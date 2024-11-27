@@ -227,11 +227,11 @@ When the container is done being created, we need to go back to your main node c
 
 To start:
 ```
-ls -l /dev/nv*
+ls -l /dev/nvidia*
 ```
 ![image](https://i.imgur.com/9iPSdRT.png)
 
-The highlighted numbers are the system specific hardware ID's that correspond with the files we are going to be calling for in the next step. Take note of these numbers.
+The highlighted numbers are the system specific hardware ID's that correspond with the files we are going to be calling for in the next step. Take note of these numbers. 
 
 ```
 nano /etc/pve/lxc/<container id>.conf
@@ -246,7 +246,6 @@ lxc.cgroup2.devices.allow: c 195:255 rw
 lxc.cgroup2.devices.allow: c 195:254 rw
 lxc.cgroup2.devices.allow: c 510:0 rw
 lxc.cgroup2.devices.allow: c 510:1 rw
-lxc.cgroup2.devices.allow: c 10:144 rw
 
 #device files   
 lxc.mount.entry: /dev/nvidia0 dev/nvidia0 none bind,optional,create=file
@@ -254,9 +253,8 @@ lxc.mount.entry: /dev/nvidiactl dev/nvidiactl none bind,optional,create=file
 lxc.mount.entry: /dev/nvidia-modeset dev/nvidia-modeset none bind,optional,create=file
 lxc.mount.entry: /dev/nvidia-uvm dev/nvidia-uvm none bind,optional,create=file
 lxc.mount.entry: /dev/nvidia-uvm-tools dev/nvidia-uvm-tools none bind,optional,create=file
-lxc.mount.entry: /dev/nvram dev/nvram none bind,optional,create=file
 ```
-Remember those numbers I highlighted with `ls -l /dev/nv*`? This is where they come into play.
+Remember those numbers I highlighted with `ls -l /dev/nvidia*`? This is where they come into play.
 ![image](https://i.imgur.com/josMC55.png)
 
 When done press `Ctrl + x` - press `y` - then `Enter` to close.
